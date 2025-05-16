@@ -1,23 +1,43 @@
 $(document).ready(() => {
     console.log("Ready!!!")
     
-    function validate(value) {
+    function validate(value, fieldId) {
+        let msg = ""
+        switch(fieldId) {
+            case "element_1":
+                msg = `Cannot enter value: ${value}`
+                console.log(msg)
+                break;
+            case y:
+                // code block
+                break;
+            default:
+                // code block
+        }
 
-        return false
+        showMessage(msg)
+
+        // return false
+    }
+
+    function showMessage(msg) {
+        alert(msg)
     }
     
-    $("#element_1").change(() => {
+    $("#element_1").change(function() {
         const value = $("#element_1").val()
         console.log('element_1 field changed')
         console.log(value)
-        if (!validate(value)) {
-            alert(`Cannot enter ${value}`)
-            console.log(`Cannot enter ${value}`)
-        }
+        validate(value, this.id)
+
+        // if (!validate(value, this.id)) {
+        //     alert(`Cannot enter ${value}`)
+        //     console.log(`Cannot enter ${value}`)
+        // }
     })
 
-    $("form").submit(() => {
+    $("form").submit(function() {
         const entry1 = $("#element_1").val()
-        alert(`Field 1 entry: ${entry1}`);
-    });
+        alert(`Submitted: ${entry1}`)
+    })
 })
