@@ -2,11 +2,13 @@ $(document).ready(() => {
     console.log("Ready!!!")
     
     function validate(value, fieldId) {
-        let msg = ""
+        let isValid = true
+
         switch(fieldId) {
             case "element_1":
-                msg = `Cannot enter value: ${value}`
-                console.log(msg)
+                const pattern = /yorku/i;
+                isValid = pattern.test(value);
+
                 break;
             case y:
                 // code block
@@ -15,25 +17,21 @@ $(document).ready(() => {
                 // code block
         }
 
-        showMessage(msg)
-
-        // return false
+        showMessage(isValid, value)
     }
 
-    function showMessage(msg) {
-        alert(msg)
+    function showMessage(isValid, value) {
+        if (!isValid) {
+            console.log('Invalid entry')
+            alert(`Cannot enter: ${value}`)
+        }
     }
     
     $("#element_1").change(function() {
         const value = $("#element_1").val()
-        console.log('element_1 field changed')
-        console.log(value)
+        console.log(`element_1 input: ${value}`)
         validate(value, this.id)
 
-        // if (!validate(value, this.id)) {
-        //     alert(`Cannot enter ${value}`)
-        //     console.log(`Cannot enter ${value}`)
-        // }
     })
 
     $("form").submit(function() {
