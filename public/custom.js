@@ -3,12 +3,13 @@ $(document).ready(() => {
     
     function validate(value, fieldId) {
         let isValid = true
+        let msg = ''
 
         switch(fieldId) {
             case "element_1":
                 const pattern = /yorku/i;
                 isValid = pattern.test(value);
-
+                msg = 'Invalid. Must contain yorku'
                 break;
             case y:
                 // code block
@@ -17,13 +18,20 @@ $(document).ready(() => {
                 // code block
         }
 
-        showMessage(isValid, value)
+        showMessage(isValid, value, msg)
     }
 
-    function showMessage(isValid, value) {
+    function showMessage(isValid, value, msg) {
         if (!isValid) {
-            console.log('Invalid entry')
-            alert(`Cannot enter: ${value}`)
+            const newMsg = document.createElement('p');
+            newMsg.textContent = msg
+            newMsg.style.color = 'red'
+
+            const container = document.getElementById('element_1').parentNode
+            container.append(newMsg)
+
+            console.log(msg)
+            // alert(`Cannot enter: ${value}`)
         }
     }
     
