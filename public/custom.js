@@ -18,21 +18,29 @@ $(document).ready(() => {
                 // code block
         }
 
-        showMessage({isValid, value, errorMsg, fieldId})
+        showMessage({isValid, errorMsg, value, fieldId})
     }
 
     function showMessage({isValid, value, errorMsg, fieldId}) {
-        const newMsg = document.createElement('p');
-        newMsg.id = `${fieldId}_msg`
-        newMsg.style.color = isValid ? 'green' : 'red'
-        newMsg.textContent = isValid ? 'Valid' : errorMsg
-
-        const container = document.getElementById('element_1').parentNode
+        let inputEl = document.getElementById(fieldId)
         document.getElementById(`${fieldId}_msg`)?.remove()
-        container.append(newMsg)
 
-        console.log(errorMsg)
+        if (!isValid) {
+            const newMsg = document.createElement('p')
+            newMsg.id = `${fieldId}_msg`
+            newMsg.style.color = 'red'
+            newMsg.textContent = errorMsg
 
+            inputEl.style.borderColor = 'red'
+            const container = inputEl.parentNode
+            container.append(newMsg)
+
+            console.log(errorMsg)
+
+        }
+        else {
+            inputEl.style.borderColor = 'green'
+        }
     }
     
     $("#element_1").change(function() {
