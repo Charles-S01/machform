@@ -3,36 +3,36 @@ $(document).ready(() => {
     
     function validate(value, fieldId) {
         let isValid = true
-        let msg = ''
+        let errorMsg = ''
 
         switch(fieldId) {
             case "element_1":
                 const pattern = /yorku/i;
                 isValid = pattern.test(value);
-                msg = 'Invalid. Must contain yorku'
+                errorMsg = 'Invalid. Must contain yorku'
                 break;
-            case y:
-                // code block
+            case "element_2":
+                console.log('')
                 break;
             default:
                 // code block
         }
 
-        showMessage(isValid, value, msg)
+        showMessage({isValid, value, errorMsg, fieldId})
     }
 
-    function showMessage(isValid, value, msg) {
-        if (!isValid) {
-            const newMsg = document.createElement('p');
-            newMsg.textContent = msg
-            newMsg.style.color = 'red'
+    function showMessage({isValid, value, errorMsg, fieldId}) {
+        const newMsg = document.createElement('p');
+        newMsg.id = `${fieldId}_msg`
+        newMsg.style.color = isValid ? 'green' : 'red'
+        newMsg.textContent = isValid ? 'Valid' : errorMsg
 
-            const container = document.getElementById('element_1').parentNode
-            container.append(newMsg)
+        const container = document.getElementById('element_1').parentNode
+        document.getElementById(`${fieldId}_msg`)?.remove()
+        container.append(newMsg)
 
-            console.log(msg)
-            // alert(`Cannot enter: ${value}`)
-        }
+        console.log(errorMsg)
+
     }
     
     $("#element_1").change(function() {
