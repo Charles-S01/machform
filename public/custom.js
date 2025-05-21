@@ -58,6 +58,7 @@ $(document).ready(() => {
 
 
     $("form").submit(function(e) {
+        console.log('clicked submit')
         if (!isAllFieldsValid()) {
             e.preventDefault()
             console.log('Cannot submit. Invalid entries')
