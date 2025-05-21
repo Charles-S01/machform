@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    console.log("Ready!!")
+    console.log("Ready!")
     let f1_isValid = false
     
     function validate(value, fieldId) {
@@ -65,6 +65,7 @@ $(document).ready(() => {
             alert('Invalid entries')
         }
         else {
+            document.getElementById('submit_form').removeAttribute('disabled')
             console.log('Submitted!')
         }
     })
