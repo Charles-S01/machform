@@ -19,7 +19,7 @@ $(document).ready(() => {
             default:
                 // code block
         }
-
+        document.getElementById('submit_form').removeAttribute('disabled')
         showMessage({isValid, errorMsg, value, fieldId})
     }
 
