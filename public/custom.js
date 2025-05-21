@@ -60,7 +60,11 @@ $(document).ready(() => {
     $("form").submit(function(e) {
         if (!isAllFieldsValid()) {
             e.preventDefault()
+            console.log('Cannot submit. Invalid entries')
             alert('Invalid entries')
+        }
+        else {
+            console.log('Submitted!')
         }
     })
 })
