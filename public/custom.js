@@ -1,5 +1,6 @@
 $(document).ready(() => {
-    console.log("Ready!!!")
+    console.log("Ready!!")
+    let f1_isValid = false
     
     function validate(value, fieldId) {
         let isValid = true
@@ -7,10 +8,11 @@ $(document).ready(() => {
 
         switch(fieldId) {
             case "element_1":
-                const pattern = /yorku/i;
-                isValid = pattern.test(value);
+                const pattern = /yorku/i
+                isValid = pattern.test(value)
+                f1_isValid = isValid
                 errorMsg = 'Invalid. Must contain yorku'
-                break;
+                break
             case "element_2":
                 console.log('')
                 break;
@@ -50,8 +52,15 @@ $(document).ready(() => {
 
     })
 
-    $("form").submit(function() {
-        const entry1 = $("#element_1").val()
-        alert(`Submitted: ${entry1}`)
+    function isAllFieldsValid() {
+        return f1_isValid
+    }
+
+
+    $("form").submit(function(e) {
+        if (!isAllFieldsValid()) {
+            e.preventDefault()
+            alert('Invalid entries')
+        }
     })
 })
