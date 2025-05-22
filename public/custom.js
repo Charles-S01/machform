@@ -56,6 +56,13 @@ $(document).ready(() => {
         validate(value, this.id)
     })
 
+    $("#element_2").change(function() {
+        const value = $("#element_2").val()
+        console.log(`element_2 input: ${value}`)
+        validate(value, this.id)
+    })
+
+
     function isAllFieldsValid() {
         let isAllValid = true
         for (const [field, isValid] of fields) {
