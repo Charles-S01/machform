@@ -1,6 +1,10 @@
 $(document).ready(() => {
     console.log("Ready!")
-    let f1_isValid = false
+
+    const fields = new Map()
+    for (let i = 1; i <= 2; i++) {
+        fields.set(`element_${i}`, true)
+    }
     
     function validate(value, fieldId) {
         let isValid = true
@@ -10,12 +14,14 @@ $(document).ready(() => {
             case "element_1":
                 const pattern = /yorku/i
                 isValid = pattern.test(value)
-                f1_isValid = isValid
+                fields.set(fieldId, isValid)
                 errorMsg = 'Invalid. Must contain yorku'
                 break
             case "element_2":
-                console.log('')
-                break;
+                isValid = /uni/i.test(value)
+                fields.set(fieldId, isValid)
+                errorMsg = 'Invalid. Must contain uni'
+                break
             default:
                 // code block
         }
@@ -38,7 +44,6 @@ $(document).ready(() => {
             container.append(newMsg)
 
             console.log(errorMsg)
-
         }
         else {
             inputEl.style.borderColor = 'green'
@@ -49,19 +54,24 @@ $(document).ready(() => {
         const value = $("#element_1").val()
         console.log(`element_1 input: ${value}`)
         validate(value, this.id)
-
     })
 
     function isAllFieldsValid() {
-        return f1_isValid
+        let isAllValid = true
+        for (const [field, isValid] of fields) {
+            if (!isValid) {
+                isAllValid = false
+                break
+            }
+        }
+        return isAllValid
     }
-
 
     $("form").submit(function(e) {
         console.log('clicked submit')
         if (!isAllFieldsValid()) {
             e.preventDefault()
-            console.log('Cannot submit. Invalid entries')
+            console.log('Invalid entries')
             alert('Invalid entries')
         }
         else {
