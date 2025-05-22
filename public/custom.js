@@ -1,9 +1,11 @@
 $(document).ready(() => {
-    console.log("Ready!")
+    console.log("Ready!!")
+    
+    const numOfFields = 2
 
     const fields = new Map()
-    for (let i = 1; i <= 2; i++) {
-        fields.set(`element_${i}`, true)
+    for (let i = 1; i <= numOfFields; i++) {
+        fields.set(`element_${i}`, false)
     }
     
     function validate(value, fieldId) {
@@ -64,14 +66,17 @@ $(document).ready(() => {
 
 
     function isAllFieldsValid() {
-        let isAllValid = true
-        for (const [field, isValid] of fields) {
-            if (!isValid) {
-                isAllValid = false
-                break
+        if (fields.size == numOfFields) {
+            let isAllValid = true
+            for (const [field, isValid] of fields) {
+                if (!isValid) {
+                    isAllValid = false
+                    break
+                }
             }
+            return isAllValid
         }
-        return isAllValid
+        return false
     }
 
     $("form").submit(function(e) {
