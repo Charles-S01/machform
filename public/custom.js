@@ -1,6 +1,6 @@
 $(document).ready(() => {
-    console.log("Ready!!")
-    
+    console.log("Ready!")
+
     const numOfFields = 2
 
     const fields = new Map()
@@ -14,10 +14,10 @@ $(document).ready(() => {
 
         switch(fieldId) {
             case "element_1":
-                const pattern = /yorku/i
+                const pattern = /^[A-Z]{2}\s[A-Z]{4}\s\d{4}\sCr=[1-9]\.00\s[A-Z]$/
                 isValid = pattern.test(value)
                 fields.set(fieldId, isValid)
-                errorMsg = 'Invalid. Must contain yorku'
+                errorMsg = 'Invalid format'
                 break
             case "element_2":
                 isValid = /uni/i.test(value)
@@ -25,13 +25,13 @@ $(document).ready(() => {
                 errorMsg = 'Invalid. Must contain uni'
                 break
             default:
-                // code block
+                // nothing
         }
         document.getElementById('submit_form').removeAttribute('disabled')
-        showMessage({isValid, errorMsg, value, fieldId})
+        showMessage({isValid, errorMsg, fieldId})
     }
 
-    function showMessage({isValid, value, errorMsg, fieldId}) {
+    function showMessage({isValid, errorMsg, fieldId}) {
         let inputEl = document.getElementById(fieldId)
         document.getElementById(`${fieldId}_msg`)?.remove()
 
@@ -63,7 +63,6 @@ $(document).ready(() => {
         console.log(`element_2 input: ${value}`)
         validate(value, this.id)
     })
-
 
     function isAllFieldsValid() {
         if (fields.size == numOfFields) {
