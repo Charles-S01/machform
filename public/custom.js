@@ -50,7 +50,7 @@ $(document).ready(() => {
         }
         else {
             inputEl.style.borderWidth = '4px'
-            // inputEl.style.borderColor = 'green'
+            inputEl.style.borderColor = ''
         }
     }
     
