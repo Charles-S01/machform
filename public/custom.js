@@ -1,7 +1,7 @@
 $(document).ready(() => {
-    console.log("Ready!")
+    console.log("Ready!!")
 
-    const numOfFields = 2
+    const numOfFields = 1
 
     const fields = new Map()
     for (let i = 1; i <= numOfFields; i++) {
@@ -19,11 +19,11 @@ $(document).ready(() => {
                 fields.set(fieldId, isValid)
                 errorMsg = 'Invalid format'
                 break
-            case "element_2":
-                isValid = /uni/i.test(value)
-                fields.set(fieldId, isValid)
-                errorMsg = 'Invalid. Must contain uni'
-                break
+            // case "element_2":
+            //     isValid = /uni/i.test(value)
+            //     fields.set(fieldId, isValid)
+            //     errorMsg = 'Invalid. Must contain uni'
+            //     break
             default:
                 // nothing
         }
