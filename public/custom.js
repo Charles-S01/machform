@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    console.log("Ready!!")
+    console.log("Ready!!!")
 
     const numOfFields = 1
 
@@ -19,11 +19,11 @@ $(document).ready(() => {
                 fields.set(fieldId, isValid)
                 errorMsg = 'Invalid format'
                 break
-            // case "element_2":
+            case "element_2":
             //     isValid = /uni/i.test(value)
             //     fields.set(fieldId, isValid)
             //     errorMsg = 'Invalid. Must contain uni'
-            //     break
+                break
             default:
                 // nothing
         }
@@ -36,13 +36,14 @@ $(document).ready(() => {
         document.getElementById(`${fieldId}_msg`)?.remove()
 
         if (!isValid) {
+            inputEl.style.borderWidth = '2px'
+            inputEl.style.borderColor = 'red'
+
             const newMsg = document.createElement('p')
             newMsg.id = `${fieldId}_msg`
             newMsg.style.color = 'red'
             newMsg.textContent = errorMsg
 
-            inputEl.style.borderWidth = '1px'
-            inputEl.style.borderColor = 'red'
             const container = inputEl.parentNode
             container.append(newMsg)
 
@@ -60,11 +61,11 @@ $(document).ready(() => {
         validate(value, this.id)
     })
 
-    $("#element_2").change(function() {
-        const value = $("#element_2").val()
-        console.log(`element_2 input: ${value}`)
-        validate(value, this.id)
-    })
+    // $("#element_2").change(function() {
+    //     const value = $("#element_2").val()
+    //     console.log(`element_2 input: ${value}`)
+    //     validate(value, this.id)
+    // })
 
     function isAllFieldsValid() {
         if (fields.size == numOfFields) {
@@ -81,7 +82,7 @@ $(document).ready(() => {
     }
 
     $("form").submit(function(e) {
-        console.log('clicked submit')
+        console.log('submitting...')
         if (!isAllFieldsValid()) {
             e.preventDefault()
             console.log('Invalid entries')
