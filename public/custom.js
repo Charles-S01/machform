@@ -41,6 +41,7 @@ $(document).ready(() => {
             newMsg.style.color = 'red'
             newMsg.textContent = errorMsg
 
+            inputEl.style.borderWidth = '1px'
             inputEl.style.borderColor = 'red'
             const container = inputEl.parentNode
             container.append(newMsg)
@@ -48,7 +49,8 @@ $(document).ready(() => {
             console.log(errorMsg)
         }
         else {
-            inputEl.style.borderColor = 'green'
+            inputEl.style.borderWidth = '4px'
+            // inputEl.style.borderColor = 'green'
         }
     }
     
