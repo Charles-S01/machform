@@ -14,7 +14,7 @@ $(document).ready(() => {
 
         switch(fieldId) {
             case "element_1":
-                const pattern = /^[A-Z]{2}\s[A-Z]{4}\s\d{4}\sCr=[1-9]\.00\s[A-Z]$/
+                const pattern = /^[A-Z]{2}\s[A-Z]{2,4}\s{1,2}\d{4}\s{1,2}CR=\s{0,2}[0-9]\.0\s\[([A-Z]\d{2}|[A-Z]\d{2}-[A-Z]\d{2})\s([A-Z]|\w{2})\s{1,2}[A-Z]{2}\]$/
                 isValid = pattern.test(value)
                 fields.set(fieldId, isValid)
                 errorMsg = 'Invalid format'
